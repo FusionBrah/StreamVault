@@ -1,27 +1,19 @@
 <br />
 <div align="center">
-  <a>
-    <img src=".github/ganymede-logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h2 align="center">Ganymede</h2>
+  <h2 align="center">StreamVault</h2>
 
   <p align="center">
-    Ganymede is a Twitch VOD and Live Stream archiving platform with a real-time chat experience. Every archive includes a rendered chat for viewing outside of Ganymede. Files are saved in a friendly format allowing for use without Ganymede.
+    StreamVault is a Twitch VOD and Live Stream archiving platform with a real-time chat experience. Every archive includes a rendered chat for viewing outside of the platform. Files are saved in a friendly format allowing for use without StreamVault.
   </p>
 </div>
 
 ---
 
-## Screenshot
-
-![ganymede-readme_landing](https://github.com/user-attachments/assets/b1c024f5-f5ad-4611-84db-42d599364a74)
-
-https://github.com/user-attachments/assets/184451f1-e3ce-4329-8516-a9842648c01b
+> **Note:** StreamVault is based on [Ganymede](https://github.com/Zibbp/ganymede) by Zibbp. This fork includes modifications and customizations for personal use. All credit for the original architecture and features goes to the Ganymede project.
 
 ## About
 
-Ganymede allows archiving of past streams (VODs) and live streams with a real-time chat playback along with a archival-friendly rendered chat. All files are saved in a friendly way that doesn't require Ganymede to view them (see [file structure](https://github.com/Zibbp/ganymede/wiki/File-Structure)). Ganymede is the successor of [Ceres](https://github.com/Zibbp/Ceres).
+StreamVault allows archiving of past streams (VODs) and live streams with real-time chat playback along with an archival-friendly rendered chat. All files are saved in a friendly way that doesn't require StreamVault to view them (see [file structure](https://github.com/Zibbp/ganymede/wiki/File-Structure)).
 
 ## Features
 
@@ -35,7 +27,7 @@ Ganymede allows archiving of past streams (VODs) and live streams with a real-ti
 - Custom post-download video FFmpeg parameters.
 - Custom chat render parameters.
 - Webhook notifications.
-- Simple file structure for long-term archival that will outlast Ganymede.
+- Simple file structure for long-term archival that will outlast the platform.
 - Recoverable queue system.
 - Playback / progress saving.
 - Playlists.
@@ -74,8 +66,6 @@ Feel free to use an existing Postgres database container if you don't want to sp
 1. Download a copy of the `docker-compose.yml` file.
 2. Edit the `docker-compose.yml` file modifying the environment variables, see [environment variables](https://github.com/Zibbp/ganymede#environment-variables) for more information.
 3. Run `docker compose up -d`.
-4. Visit the address and port you specified for the frontend and login with username: `admin` password: `ganymede`.
-5. Change the admin password _or_ create a new user, grant admin permissions on that user, and delete the admin user.
 
 ### Images
 
@@ -96,11 +86,11 @@ Note: On startup the container will `chown` the config, temp, and logs directory
 
 ### Config
 
-A configuration file is generate on initial start of Ganymede. By default the configuration is at `/data/config/config.json`. See the [config.go](https://github.com/Zibbp/ganymede/blob/main/internal/config/config.go) file for a full list of configuration settings. Most of the settings can be configured in the Web UI by navigating to Admin > Settings.
+A configuration file is generated on initial start. By default the configuration is at `/data/config/config.json`. See the [config.go](internal/config/config.go) file for a full list of configuration settings. Most of the settings can be configured in the Web UI by navigating to Admin > Settings.
 
 ### Environment Variables
 
-The `docker-compose.yml` file has comments for each environment variable. Below is a list of all environment variables and their descriptions. See the [env.go](https://github.com/Zibbp/ganymede/blob/main/internal/config/env.go) file for a full list of all environment variables and their default values.
+The `docker-compose.yml` file has comments for each environment variable. Below is a list of all environment variables and their descriptions. See the [env.go](internal/config/env.go) file for a full list of all environment variables and their default values.
 
 ##### Server
 
@@ -163,7 +153,7 @@ The `docker-compose.yml` file has comments for each environment variable. Below 
 
 ## Development
 
-A [devcontainer](https://containers.dev/) is included for development. This container includes all the necessary tools to develop Ganymede. Once setup, the [Makefile](/Makefile) can be used to run the development environment.
+A [devcontainer](https://containers.dev/) is included for development. This container includes all the necessary tools to develop StreamVault. Once setup, the [Makefile](/Makefile) can be used to run the development environment.
 
 - `make dev_server` - Starts the server.
 - `make dev_worker` - Starts the worker.
@@ -173,9 +163,10 @@ View the [Makefile](/Makefile) for more commands.
 
 ## Acknowledgements
 
+- [Ganymede](https://github.com/Zibbp/ganymede) - The original project this fork is based on
 - [TwitchDownloader](https://github.com/lay295/TwitchDownloader)
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
 ## License
 
-[GNU General Public License v3.0](https://github.com/Zibbp/ganymede/blob/main/LICENSE)
+[GNU General Public License v3.0](LICENSE)
