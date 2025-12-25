@@ -1,0 +1,59 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/jungaretti/features/make:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": { "moby": false },
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/guiyomh/features/golangci-lint:0": {},
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "yzhang.markdown-all-in-one",
+        "esbenp.prettier-vscode",
+        "naumovs.color-highlight",
+        "ms-vscode-remote.remote-containers",
+        "burkeholland.simple-react-snippets",
+        "vunguyentuan.vscode-css-variables",
+        "vunguyentuan.vscode-postcss",
+        "lokalise.i18n-ally",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+  // "forwardPorts": [4000],
+  "appPort": ["0.0.0.0:4000:4000"],
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolder}/dev/videos",
+      "target": "/data/videos",
+      "type": "bind"
+    },
+    {
+      "source": "${localWorkspaceFolder}/dev/temp",
+      "target": "/data/temp",
+      "type": "bind"
+    },
+    {
+      "source": "${localWorkspaceFolder}/dev/logs",
+      "target": "/data/logs",
+      "type": "bind"
+    },
+    {
+      "source": "${localWorkspaceFolder}/dev/config",
+      "target": "/data/config",
+      "type": "bind"
+    }
+  ],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
+  "postAttachCommand": "sudo chown -R vscode:vscode /go && make dev_setup"
+}

@@ -1,0 +1,30 @@
+name: golangci-lint
+on:
+  push:
+    tags:
+      - v*
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  golangci:
+    name: lint
+    # no need to run if dependabot is the author
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v6
+        with:
+          go-version: "stable"
+
+      - uses: actions/checkout@v6
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v9.2.0
+        with:
+          version: latest
+          args: --timeout 3m

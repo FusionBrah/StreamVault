@@ -1,0 +1,18 @@
+# StreamVault B2 Sync Crontab
+# Install with: crontab /path/to/crontab.example
+# Or add these lines to existing crontab: crontab -e
+
+# Environment variables (adjust paths as needed)
+VIDEOS_DIR=/data/videos
+B2_BUCKET=backblaze:streamvault-vods
+LOG_DIR=/var/log/streamvault
+DAYS_OLD=7
+
+# Sync to Backblaze B2 every hour at minute 0
+0 * * * * /opt/streamvault/scripts/sync-to-b2.sh
+
+# Cleanup local files older than 7 days (daily at 3:00 AM)
+0 3 * * * /opt/streamvault/scripts/cleanup-local.sh
+
+# Optional: Log rotation (weekly)
+0 0 * * 0 find /var/log/streamvault -name "*.log" -mtime +30 -delete

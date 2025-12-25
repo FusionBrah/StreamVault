@@ -1,0 +1,55 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Go workspace file
+go.work
+
+.env
+
+/cmd/server/__debug_bin
+dev
+tmp
+**/__debug
+__debug*
+
+# dependencies
+/frontend/node_modules
+/frontend/.pnp
+/frontend/.pnp.*
+/frontend/.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/frontend/.next/
+/out/
+
+# production
+/build
+
+# debug
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+# env files (can opt-in for committing if needed)
+/frontend/.env*
+
+# typescript
+/frontend/*.tsbuildinfo
+/frontend/next-env.d.ts
+__debug_bin*
