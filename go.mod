@@ -12,7 +12,7 @@ require (
 	github.com/coreos/go-oidc/v3 v3.17.0
 	github.com/gavv/httpexpect/v2 v2.17.0
 	github.com/go-jose/go-jose/v4 v4.1.3
-	github.com/go-playground/validator/v10 v10.30.0
+	github.com/go-playground/validator/v10 v10.30.1
 	github.com/golang-jwt/jwt/v4 v4.5.2
 	github.com/google/uuid v1.6.0
 	github.com/grafov/m3u8 v0.12.1
@@ -24,7 +24,6 @@ require (
 	github.com/riverqueue/river v0.28.0
 	github.com/riverqueue/river/rivertype v0.28.0
 	github.com/rs/zerolog v1.34.0
-	github.com/sethvargo/go-envconfig v1.3.0
 	github.com/shirou/gopsutil/v4 v4.25.11
 	github.com/swaggo/swag v1.16.6
 	github.com/testcontainers/testcontainers-go v0.40.0
