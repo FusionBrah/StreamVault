@@ -5,7 +5,7 @@ set -e
 
 # Configuration - adjust these for your setup
 VIDEOS_DIR="${VIDEOS_DIR:-/data/videos}"
-B2_BUCKET="${B2_BUCKET:-backblaze:streamvault-vods}"
+B2_BUCKET="${B2_BUCKET:-backblaze:streamvault}"
 LOG_DIR="${LOG_DIR:-/var/log/streamvault}"
 LOCK_FILE="/tmp/b2-sync.lock"
 MIN_AGE="${MIN_AGE:-1h}"  # Don't sync files younger than this (avoids in-progress downloads)

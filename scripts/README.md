@@ -7,7 +7,7 @@ Scripts for syncing StreamVault video storage to Backblaze B2 with Cloudflare CD
 ```
 StreamVault Server          Backblaze B2              Cloudflare CDN
 +----------------+          +------------------+      +-------------+
-| /data/videos/  |  rclone  | streamvault-vods |      |             |
+| /data/videos/  |  rclone  | streamvault |      |             |
 |   channel1/    | -------> |   channel1/      | <--- | cdn.domain  |
 |   channel2/    |  hourly  |   channel2/      |      |             |
 +----------------+          +------------------+      +-------------+
@@ -22,13 +22,13 @@ StreamVault Server          Backblaze B2              Cloudflare CDN
 ### 1. Backblaze B2
 
 1. Create a B2 bucket:
-   - Name: `streamvault-vods`
+   - Name: `streamvault`
    - File visibility: **Public**
    - Encryption: None
    - Object Lock: Disabled
 
 2. Create an Application Key:
-   - Restrict to bucket: `streamvault-vods`
+   - Restrict to bucket: `streamvault`
    - Save the `keyID` and `applicationKey`
 
 ### 2. Cloudflare (Free Egress)
@@ -96,7 +96,7 @@ hard_delete> true
 
 Test connection:
 ```bash
-rclone lsd backblaze:streamvault-vods
+rclone lsd backblaze:streamvault
 ```
 
 ### 5. Install Scripts
@@ -111,7 +111,7 @@ sudo cp sync-to-b2.sh cleanup-local.sh /opt/streamvault/scripts/
 sudo chmod +x /opt/streamvault/scripts/*.sh
 
 # Test sync (dry run first)
-rclone sync /data/videos backblaze:streamvault-vods --dry-run
+rclone sync /data/videos backblaze:streamvault --dry-run
 
 # Test cleanup (dry run)
 DRY_RUN=true /opt/streamvault/scripts/cleanup-local.sh
@@ -137,12 +137,12 @@ Set `CDN_URL` in docker-compose.yml:
 
 ```yaml
 environment:
-  - CDN_URL=https://cdn.yourdomain.com/file/streamvault-vods
+  - CDN_URL=https://cdn.yourdomain.com/file/streamvault
 ```
 
 URL format:
-- Direct B2: `https://f000.backblazeb2.com/file/streamvault-vods`
-- Cloudflare: `https://cdn.yourdomain.com/file/streamvault-vods`
+- Direct B2: `https://f000.backblazeb2.com/file/streamvault`
+- Cloudflare: `https://cdn.yourdomain.com/file/streamvault`
 
 Restart StreamVault:
 ```bash
@@ -154,7 +154,7 @@ docker compose up -d
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `VIDEOS_DIR` | `/data/videos` | Local video storage path |
-| `B2_BUCKET` | `backblaze:streamvault-vods` | rclone remote:bucket |
+| `B2_BUCKET` | `backblaze:streamvault` | rclone remote:bucket |
 | `LOG_DIR` | `/var/log/streamvault` | Log file directory |
 | `MIN_AGE` | `1h` | Don't sync files younger than this |
 | `DAYS_OLD` | `7` | Delete local files older than this |
@@ -178,10 +178,10 @@ DRY_RUN=true /opt/streamvault/scripts/cleanup-local.sh
 DAYS_OLD=14 /opt/streamvault/scripts/cleanup-local.sh
 
 # Check what's in B2
-rclone ls backblaze:streamvault-vods
+rclone ls backblaze:streamvault
 
 # Check sync status
-rclone check /data/videos backblaze:streamvault-vods
+rclone check /data/videos backblaze:streamvault
 ```
 
 ## Troubleshooting
@@ -198,7 +198,7 @@ grep CRON /var/log/syslog
 **Files not deleting:**
 ```bash
 # Check if file exists in B2
-rclone lsf backblaze:streamvault-vods/channel/folder/file.mp4
+rclone lsf backblaze:streamvault/channel/folder/file.mp4
 
 # Run cleanup with debug
 DRY_RUN=true /opt/streamvault/scripts/cleanup-local.sh

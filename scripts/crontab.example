@@ -4,7 +4,7 @@
 
 # Environment variables (adjust paths as needed)
 VIDEOS_DIR=/data/videos
-B2_BUCKET=backblaze:streamvault-vods
+B2_BUCKET=backblaze:streamvault
 LOG_DIR=/var/log/streamvault
 DAYS_OLD=7
 
