@@ -6,7 +6,7 @@ set -e
 
 # Configuration - adjust these for your setup
 VIDEOS_DIR="${VIDEOS_DIR:-/data/videos}"
-B2_BUCKET="${B2_BUCKET:-backblaze:streamvault}"
+B2_BUCKET="${B2_BUCKET:-backblaze:streamvault/data/videos}"
 LOG_DIR="${LOG_DIR:-/var/log/streamvault}"
 DAYS_OLD="${DAYS_OLD:-7}"  # Delete files older than this many days
 DRY_RUN="${DRY_RUN:-false}"  # Set to "true" to preview without deleting
